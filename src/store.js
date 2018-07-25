@@ -2,7 +2,7 @@ import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
 
 import defaultCategories from './default-categories';
 
-// import availableCash from './reducers/available-cash';
+import availableCash from './components/AvailableCash/reducer';
 // import goals from './reducers/goals';
 // import order from './reducers/order';
 // import spending from './reducers/spending-categories';
@@ -12,8 +12,14 @@ const reducer = combineReducers({
   spending: fn,
   goals: fn,
   order: fn,
-  availableCash: fn,
+  availableCash
 });
+
+export interface StoreShape {
+  availableCash: number;
+  goals: ObjectOf<Goal>;
+  order: Array<number>;  
+}
 
 const initialState = {
   spending: defaultCategories(),
