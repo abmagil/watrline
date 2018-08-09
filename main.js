@@ -1,3 +1,4 @@
+// tslint:disable:no-console
 const {app, BrowserWindow} = require('electron')
 const { ipcMain } = require('electron')
 const { ipcRenderer } = require('electron')

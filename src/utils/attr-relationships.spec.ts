@@ -1,4 +1,4 @@
-import * as calculated from './attr-relationships.js';
+import * as calculated from './attr-relationships';
 
 describe('Attribute relationship functions', () => {
   describe('endYear', () => {
@@ -27,39 +27,39 @@ describe('Attribute relationship functions', () => {
   describe('spendingPerMonth', () => {
     it('should calculate the monthly cost for a goal, given a total, starting date, and ending date', () => {
       const props = {
-        goalTotal: 1200,
         deadlineYear: 2018,
+        goalTotal: 1200,
         startingYear: 2017
       };
 
-      expect(calculated.spendingPerMonth(props)).toBe(100);
+      expect(calculated.spendingPerMonthFn(props)).toBe(100);
     });
     it('should return the goal total if the deadline is before start', () => {
       const props = {
+        deadlineYear: 2000,
         goalTotal: 1200,
-        deadlineYear: 2000
       };
 
-      expect(calculated.spendingPerMonth(props)).toBe(1200);
+      expect(calculated.spendingPerMonthFn(props)).toBe(1200);
     });
     it('should default startingYear to right now', () => {
       const oneYearFromNow = new Date().getFullYear() + 1;
 
       const props = {
+        deadlineYear: oneYearFromNow,
         goalTotal: 1200,
-        deadlineYear: oneYearFromNow
       };
 
-      expect(calculated.spendingPerMonth(props)).toBe(100);
+      expect(calculated.spendingPerMonthFn(props)).toBe(100);
     });
     it('should return goalTotal if startingYear and deadlineYear are the same', () => {
       const props = {
+        deadlineYear: 2021,
         goalTotal: 1200,
         startingYear: 2021,
-        deadlineYear: 2021
       }
 
-      expect(calculated.spendingPerMonth(props)).toBe(1200);
+      expect(calculated.spendingPerMonthFn(props)).toBe(1200);
     });
   });
 
@@ -67,8 +67,8 @@ describe('Attribute relationship functions', () => {
     it('should calculate total available at the end of a given year, from a given outlay', () => {
       const props = {
         deadlineYear: 2018,
+        spendingPerMonth: 100,
         startingYear: 2017,
-        spendingPerMonth: 100
       };
 
       expect(calculated.total(props)).toBe(1200);
@@ -85,8 +85,8 @@ describe('Attribute relationship functions', () => {
       const oneYearFromNow = new Date().getFullYear() + 1;
       
       const props = {
+        deadlineYear: oneYearFromNow,
         spendingPerMonth: 100,
-        deadlineYear: oneYearFromNow
       };
 
       expect(calculated.total(props)).toBe(1200);

@@ -4,10 +4,21 @@ import {
   sum,
   toPairs
 } from 'lodash';
+import { CategorySpendingType } from './categories';
 
-const toNode = (nodeName) => ({name: nodeName});
+interface SankeyLink {
+  source: string;
+  target: string;
+  value: number;
+}
 
-const calculateLayer = (parent, key, value, nodeSet, linkSet) => {
+interface SankeyNode {
+  name: string;
+}
+
+const toNode = (nodeName: string): SankeyNode => ({name: nodeName});
+
+const calculateLayer = (parent: null|string, key: string, value: CategorySpendingType, nodeSet: Set<string>, linkSet: Set<SankeyLink>): number => {
   let weight = 0;
   if (isNumber(value)) {
     weight = value;
@@ -30,9 +41,9 @@ const calculateLayer = (parent, key, value, nodeSet, linkSet) => {
   return weight; // weight for entire layer
 };
 
-export default (data) => {
+export default (data: CategorySpendingType) => {
   let rootedData; // function requires a single root node
-  if(size(data) !== 1) {
+  if(mySize(data) !== 1) {
     rootedData = {
       total: data,
     };
@@ -40,14 +51,22 @@ export default (data) => {
     rootedData = data;
   }
   
-  const nodeSet = new Set();
-  const linkSet = new Set();
+  const nodeSet: Set<string> = new Set();
+  const linkSet: Set<SankeyLink> = new Set();
   const root = Object.keys(rootedData)[0];
   calculateLayer(null, root, rootedData[root], nodeSet, linkSet);
 
   return {
     // spreading the set converts to an array
-    nodes: [...nodeSet].map(toNode),
     links: [...linkSet],
+    nodes: [...nodeSet].map(toNode),
   };
 };
+
+const mySize = (input: CategorySpendingType): number => {
+  if (typeof input === 'number') {
+    return 0;
+  }
+
+  return size(input);
+}

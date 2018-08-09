@@ -1,4 +1,4 @@
-import entries from 'lodash/entries';
+import { entries } from 'lodash';
 
 const categoryRelationships = {
   entertainment: [
@@ -19,6 +19,8 @@ const categoryRelationships = {
   ],
 };
 
+export type Categories = ObjectOf<number>;
+
 /**
  * @returns {
  *  'entertainment.games': 10,
@@ -27,8 +29,9 @@ const categoryRelationships = {
  *  'investing.other': 200
  * }
  */
-export default function() {
-  let built = {};
+const categoryBuilder = (): Categories => {
+  // tslint:disable-next-line:prefer-const
+  let built: ObjectOf<number> = {};
   entries(categoryRelationships).map(([category, subcats], j) => {
     subcats.map((subcat, i) => {
       built[`${category}.${subcat}`] = Math.floor((j+1) * ((i+1) * Math.random() * 10) * 20);
@@ -36,3 +39,5 @@ export default function() {
   });
   return built;
 }
+
+export default categoryBuilder;

@@ -1,4 +1,4 @@
-import isFinite from 'lodash/isFinite';
+import { isFinite } from 'lodash';
 
 // Ingest a goal, return an array of monthly spending, each index is cumulative
 export default function goalToMonthlySpendingArray({ goalTotal, spendingPerMonth } = {}) {

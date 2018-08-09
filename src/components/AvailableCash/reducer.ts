@@ -1,3 +1,4 @@
+import { Reducer } from 'redux';
 import * as _ from 'lodash';
 const { sum, orderBy } = _;
 
@@ -8,7 +9,8 @@ export interface UpdateCashAction {
   availableCash: number;
 }
 
-const reducer = (state = 0, action: UpdateCashAction) => {
+type AvailableCashState = number;
+const reducer: Reducer<AvailableCashState, UpdateCashAction> = (state = 0, action: UpdateCashAction) => {
   const { availableCash } = action;
   switch (action.type) {
   case 'APP:UPDATE_CASH':
@@ -24,7 +26,7 @@ export const setAvailableCash = (newCash: number) => ({
 })
 
 export const orderedGoalsFrom = (state: StoreShape) => (
-  state.order.map((goalId) => (state.goals[goalId])) || []
+  state.order.map((goalId: string) => (state.goals[goalId])) || []
 );
 
 export const totalGoalSpendingFrom = (state: StoreShape) => {

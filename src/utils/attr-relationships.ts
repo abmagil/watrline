@@ -1,7 +1,11 @@
-import moment from 'moment';
+import * as moment from 'moment';
 
+interface MonthsUntil {
+  deadlineMoment: moment.Moment;
+  startingMoment: moment.Moment;
+}
 // Calculates distance to the end of given year
-function monthsUntil({deadlineMoment, startingMoment}) {
+function monthsUntil({deadlineMoment, startingMoment}: MonthsUntil): number {
   const diff = deadlineMoment.diff(startingMoment, 'months');
   if (diff >= 0) {
     return diff;
@@ -10,11 +14,20 @@ function monthsUntil({deadlineMoment, startingMoment}) {
   }
 }
 
-function monthsOfSpending({ goalTotal, spendingPerMonth }) {
+interface MonthsOfSpending {
+  goalTotal: number;
+  spendingPerMonth: number;
+}
+function monthsOfSpending({ goalTotal, spendingPerMonth }: MonthsOfSpending): number {
   return Math.ceil(goalTotal / spendingPerMonth);
 }
 
-export function total({ spendingPerMonth, deadlineYear, startingYear=moment().year() }) {
+interface Total {
+  deadlineYear: number;
+  spendingPerMonth: number;
+  startingYear?: number;
+}
+export function total({ spendingPerMonth, deadlineYear, startingYear=moment().year() }: Total): number {
   const deadlineMoment = moment(deadlineYear, 'Y');
   const startingMoment = moment(startingYear, 'Y');
   if (deadlineMoment < startingMoment) { return 0; }
@@ -24,7 +37,12 @@ export function total({ spendingPerMonth, deadlineYear, startingYear=moment().ye
   return spendingPerMonth * spendingMonths;
 }
 
-export function spendingPerMonth({ goalTotal, deadlineYear, startingYear=moment().year() }) {
+interface SpendingPerMonth {
+  goalTotal: number;
+  deadlineYear: number;
+  startingYear?: number;
+}
+export function spendingPerMonthFn({ goalTotal, deadlineYear, startingYear=moment().year() }: SpendingPerMonth): number {
   const deadlineMoment = moment(deadlineYear, 'Y');
   const startingMoment = moment(startingYear, 'Y');
   const spendingMonths = monthsUntil({deadlineMoment, startingMoment});
@@ -36,8 +54,13 @@ export function spendingPerMonth({ goalTotal, deadlineYear, startingYear=moment(
   }
 }
 
+interface EndYear {
+  goalTotal: number;
+  spendingPerMonth: number;
+  startingYear?: number;
+}
 // Built in assumption that answer is "in year XXXX", i.e. by the end of XXXX
-export function endYear({ goalTotal, spendingPerMonth, startingYear=moment().year() }) {
+export function endYear({ goalTotal, spendingPerMonth, startingYear=moment().year() }: EndYear): number {
   const startingMoment = moment(startingYear, 'Y');
   const calculatedMonths = monthsOfSpending({goalTotal, spendingPerMonth});
 

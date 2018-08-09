@@ -1,13 +1,20 @@
-import entries from 'lodash/entries';
-import isNumber from 'lodash/isNumber';
-import merge from 'lodash/merge';
-import tail from 'lodash/tail';
+import {
+  entries,
+  isNumber,
+  merge,
+  tail
+} from 'lodash';
+
+export type CategorySpendingType = number | CategorySpendingTree;
+interface CategorySpendingTree {
+  [x: string]: CategorySpendingType
+}
 
 // (k, v) => {k: v|{}}
-const nestObject = (key, value) => {
+const nestObject = (key: string, value: number): ObjectOf<CategorySpendingType> => {
   const splitKey = key.split(/\./);
   
-  if(tail(splitKey).length == 0) {
+  if(tail(splitKey).length === 0) {
     return {
       [splitKey[0]]: value,
     };
@@ -21,14 +28,14 @@ const nestObject = (key, value) => {
   }
 };
 
-export const flatToNested = (flatStructure) => {
+export const flatToNested = (flatStructure: ObjectOf<number>) => {
   const listOfObjects = entries(flatStructure).map((entry) => {
     return nestObject(entry[0], entry[1]);
   });
   return merge({}, ...listOfObjects);
 };
 
-const flattenObject = (into, keyArr, value) => {
+const flattenObject = (into: ObjectOf<number>, keyArr: Array<string>, value: CategorySpendingType) => {
   if(isNumber(value)) {
     const key = keyArr.join('.');
     into[key] = value;
@@ -39,7 +46,8 @@ const flattenObject = (into, keyArr, value) => {
   }
 };
 
-export const nestedToFlat = (nestedStructure) => {
+export const nestedToFlat = (nestedStructure: ObjectOf<CategorySpendingType>): ObjectOf<number> => {
+  // tslint:disable-next-line:prefer-const
   let built = {};
 
   entries(nestedStructure).forEach(([key, value]) => {

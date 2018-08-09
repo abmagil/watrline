@@ -6,7 +6,7 @@
   ],
   "defaultSeverity": "warning",
   "rules": {
-    "no-any": true,
+    "array-type":[true, "generic"],
     "interface-name": false,
     "object-literal-sort-keys": false,
     "forin": false,

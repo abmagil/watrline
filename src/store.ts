@@ -1,27 +1,31 @@
-import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
+  // tslint:disable:object-literal-key-quotes
+  import { 
+  createStore,
+  combineReducers,
+} from 'redux';
 
-import defaultCategories from './default-categories';
+import defaultCategories, { Categories } from './default-categories';
 
 import availableCash from './components/AvailableCash/reducer';
-// import goals from './reducers/goals';
-// import order from './reducers/order';
-// import spending from './reducers/spending-categories';
+import goals from './components/GoalsTable/reducer';
+import order from './components/Order/reducer';
+import spending from './components/Spending/reducer';
 
-const fn = (action, state) => state;
 const reducer = combineReducers({
-  spending: fn,
-  goals: fn,
-  order: fn,
-  availableCash
+  availableCash,
+  goals,
+  order,
+  spending,
 });
 
 export interface StoreShape {
   availableCash: number;
-  goals: ObjectOf<Goal>;
-  order: Array<number>;  
+  goals: ObjectOf<GoalRecord>;
+  order: Array<string>;
+  spending: Categories;
 }
 
-const initialState = {
+const initialState: StoreShape = {
   spending: defaultCategories(),
   goals: {
     '1': {
@@ -53,9 +57,9 @@ const initialState = {
     },
   },
   order: [
-    3,
-    2,
-    1,
+    '3',
+    '2',
+    '1',
   ],
   availableCash: 400,
 };
@@ -63,7 +67,9 @@ const initialState = {
 const store = createStore(
   reducer,
   initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  // tslint:disable-next-line:no-string-literal
+  window['__REDUX_DEVTOOLS_EXTENSION__'] && window['__REDUX_DEVTOOLS_EXTENSION__']()
 );
 
 export default store;
+// tslint:enable

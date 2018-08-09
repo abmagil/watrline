@@ -11,7 +11,7 @@ describe('flatToNested', () => {
         'b': 20,
       };
 
-      expect(flatToNested(flatStructure)).toEqual({ a: 10, b: 10 });
+      expect(flatToNested(flatStructure)).toEqual({ a: 10, b: 20 });
     });
   });
   describe('for the complex case', () => {

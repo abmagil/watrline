@@ -8,9 +8,9 @@ describe('goalToMonthlySpendingArray', () => {
   describe('for a valid goal', () => {
     it(`should have the last entry equivalent to the goal's total cost`, () => {
       const validGoal = {
-        goalTotal: 115,
         deadlineYear: moment().year() + 1,
-        spendingPerMonth: 10
+        goalTotal: 115,
+        spendingPerMonth: 10,
       };
 
       const monthlySpending = goalToMonthlySpendingArray(validGoal);
@@ -18,8 +18,8 @@ describe('goalToMonthlySpendingArray', () => {
     });
     it('should have the first entry equivalent to the monthly spending', () => {
       const validGoal = {
-        goalTotal: 115,
         deadlineYear: moment().year() + 1,
+        goalTotal: 115,
         spendingPerMonth: 10
       };
 
@@ -28,8 +28,8 @@ describe('goalToMonthlySpendingArray', () => {
     });
     it('should have one entry for each month until the goal is paid', () => {
       const validGoal = {
-        goalTotal: 115,
         deadlineYear: moment().year() + 1,
+        goalTotal: 115,
         spendingPerMonth: 10
       };
 

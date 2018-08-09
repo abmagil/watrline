@@ -2,30 +2,30 @@ import { partialRight, sortBy } from 'lodash';
 import calculateData from './nestedToSankey';
 
 const sortNode = partialRight(sortBy, 'name');
-const sortLinks = partialRight(sortBy, ['source', 'target']);
 
+const sortLinks = partialRight(sortBy, ['source', 'target']);
 const simple = {
   basic: 1,
   simple: 2,
 };
 
 const simpleExpect = {
+  links: [
+    {
+      source: 'total',
+      target: 'basic',
+      value: 1,
+    },
+    {
+      source: 'total',
+      target: 'simple',
+      value: 2,
+    },
+  ],
   nodes: [
     { name: 'basic' },
     { name: 'simple' },
     { name: 'total' },
-  ],
-  links: [
-    {
-      source: 'basic',
-      target: 'total',
-      value: 1,
-    },
-    {
-      source: 'simple',
-      target: 'total',
-      value: 2,
-    },
   ],
 };
 
@@ -38,22 +38,22 @@ const singleNest = {
 };
 
 const singleNestExpect = {
+  links: [
+    {
+      source: 'cat2',
+      target: 'cat3',
+      value: 200,
+    },
+    {
+      source: 'cat1',
+      target: 'cat2',
+      value: 200,
+    },
+  ],
   nodes: [
     { name: 'cat1' },
     { name: 'cat2' },
     { name: 'cat3' },
-  ],
-  links: [
-    {
-      source: 'cat3',
-      target: 'cat2',
-      value: 200,
-    },
-    {
-      source: 'cat2',
-      target: 'cat1',
-      value: 200,
-    },
   ],
 };
 
@@ -76,6 +76,43 @@ const total = {
 };
 
 const expected = {
+  links: [
+    {
+      source: 'mainCat',
+      target: 'subcat2',
+      value: 100,
+    },
+    {
+      source: 'mainCat',
+      target: 'subcat3',
+      value: 201,
+    },
+    {
+      source: 'subcat3',
+      target: 'subcat4',
+      value: 200,
+    },
+    {
+      source: 'subcat3',
+      target: 'subcat5',
+      value: 1,
+    },
+    {
+      source: 'secondCat',
+      target: 'subcat6',
+      value: 300,
+    },
+    {
+      source: 'total',
+      target: 'mainCat',
+      value: 301,
+    },
+    {
+      source: 'total',
+      target: 'secondCat',
+      value: 300,
+    },
+  ],
   nodes: [
     { name: 'mainCat' },
     { name: 'subcat2' },
@@ -85,43 +122,6 @@ const expected = {
     { name: 'secondCat' },
     { name: 'subcat6' },
     { name: 'total' },
-  ],
-  links: [
-    {
-      source: 'subcat2',
-      target: 'mainCat',
-      value: 100,
-    },
-    {
-      source: 'subcat3',
-      target: 'mainCat',
-      value: 201,
-    },
-    {
-      source: 'subcat4',
-      target: 'subcat3',
-      value: 200,
-    },
-    {
-      source: 'subcat5',
-      target: 'subcat3',
-      value: 1,
-    },
-    {
-      source: 'subcat6',
-      target: 'secondCat',
-      value: 300,
-    },
-    {
-      source: 'mainCat',
-      target: 'total',
-      value: 301,
-    },
-    {
-      source: 'secondCat',
-      target: 'total',
-      value: 300,
-    },
   ],
 };
 
