@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import GoalAttribute from './GoalAttribute';
 
 interface DispatchProps {
   onUpClick: (id: string) => void;
@@ -15,16 +16,15 @@ interface StateProps {
 type GoalRowProps = DispatchProps & StateProps;
 
 const ActionButton = ({...props}: any) => (<div />);
-const GoalAttrContainer = ({...props}: any) => (<div />);
 
 const GoalRow = ({ goal, spendingSummary, onUpClick, onDownClick }: GoalRowProps) => (
   <tr className={classNames(['goalRow', spendingSummary])}>
     <td className="cell description">
       {goal.type}
     </td>
-    <GoalAttrContainer attrName={'goalTotal'} goalID={goal.id} />
-    <GoalAttrContainer attrName={'deadlineYear'} goalID={goal.id} />
-    <GoalAttrContainer attrName={'spendingPerMonth'} goalID={goal.id} />
+    <GoalAttribute attrName={'goalTotal'} goalID={goal.id} />
+    <GoalAttribute attrName={'deadlineYear'} goalID={goal.id} />
+    <GoalAttribute attrName={'spendingPerMonth'} goalID={goal.id} />
     <td className="cell move">
       <ActionButton
         classNames={['up']} 

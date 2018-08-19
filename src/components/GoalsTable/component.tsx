@@ -73,7 +73,7 @@ class GoalsTable extends React.Component<TableProps, TableState> {
             <td>Cost</td>
             <td>Deadline</td>
             <td>Monthly Cost</td>
-            <td>Move</td>
+            <td>&nbsp;</td>
           </tr>
         </thead>
           <GoalList

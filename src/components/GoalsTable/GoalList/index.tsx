@@ -1,8 +1,6 @@
 import * as React from 'react';
-// import GoalRowContainer from '../../containers/GoalRowContainer';
-// import GoalRow from '../GoalRow';
+import GoalRowContainer from './GoalRow';
 
-const GoalRowContainer = ({...props}: any) => (<tr />)
 
 interface GoalListProps {
   orderedGoals: Array<GoalRecord>;
