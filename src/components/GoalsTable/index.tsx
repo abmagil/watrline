@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import GoalsTable from './component';
 import { addGoal, orderedGoalsFrom } from './reducer';
-import partialToWhole from '../../utils/partial-to-complete-goal';
+import partialToWhole from '../../utils/goal-solver';
 import { StoreShape } from '../../store';
+import { GoalRowType } from './GoalList/GoalRow/component';
 
 
 const mapStateToProps = (state: StoreShape) => ({
@@ -16,11 +17,13 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     dispatch(
       addGoal({
         goalTotal: parseInt(goalTotal, 10),
+        startingYear: Date.now(), 
         deadlineYear: parseInt(deadlineYear, 10),
         spendingPerMonth: parseInt(spendingPerMonth, 10),
         type,
       })
     );
+    throw new Error('Not Implemented Yet');
   },
   goalCompletionFn: partialToWhole(identity),
 });

@@ -1,22 +1,16 @@
 import { Reducer } from 'redux';
 import { defaults } from 'lodash/fp';
 import * as uuid from 'uuid/v1';
-// import goal from './GoalRow/reducer';
-import partialToCompleteGoal from '../../utils/partial-to-complete-goal';
+import goalReducer from './GoalList/GoalRow/reducer';
+import goalSolver from '../../utils/goal-solver';
 import { StoreShape } from '../../store';
-
-
-const goalReducer: Reducer = (x: GoalData, action: GoalActions) => {
-  throw new Error('Not Implemented');
-}
+import { GoalRecord, GoalData } from 'src/models/Goal';
 
 const defaultedStartTime = <T>(goal: T): T & {startingYear: number} => {
   return defaults({ startingYear: new Date().getFullYear() }, goal);
 }
 
-const fullGoalFromPartial = partialToCompleteGoal((goalData: GoalData) => {
-  throw new Error(`Too many unset attributes for goal ${goalData.type}`);
-});
+const fullGoalFromPartial = goalSolver();
 
 export interface AddGoalAction {
   type: 'GOAL:ADD';
@@ -36,7 +30,7 @@ export interface SetLockedGoalAction {
   type: 'GOAL:UPDATE:LOCKED'
 }
 
-type AddGoalParams = Omit<PartialGoal<number>, 'lockedAttr'>
+type AddGoalParams = Omit<GoalData, 'lockedAttr'>
 // type AddGoalParams = PartialGoal<number>
 export const addGoal = (goal: AddGoalParams): AddGoalAction => { 
   // We have to assign lockedAttr like this because of a TS limitation

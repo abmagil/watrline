@@ -25,6 +25,9 @@
     "no-string-literal": {
       "severity": "warning"
     },
+    "no-unused-variable": {
+      "severity": "warning"
+    },
     "object-literal-key-quotes": {
       "options": "as-needed"
     },

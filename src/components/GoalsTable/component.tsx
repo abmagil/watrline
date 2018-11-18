@@ -1,6 +1,8 @@
 import * as React from 'react';
 import GoalList from './GoalList';
 import cdf from '../../utils/cdf';
+import { GoalRowType } from './GoalList/GoalRow/component';
+import { GoalRecord, GoalData } from '../../models/Goal';
 
 type GoalFn = <T>(fn: T) => GoalRowType;
 interface DispatchProps {

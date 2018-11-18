@@ -1,4 +1,5 @@
 import { Reducer } from 'redux';
+import { GoalRecord } from '../../models/Goal';
 
 export interface AddGoalAction {
   type: 'GOAL:ADD';

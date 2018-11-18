@@ -5,6 +5,7 @@ import { availableCashFrom } from '../../../AvailableCash/';
 import spendingSummary from '../../../../utils/spending-summary';
 import { StoreShape } from '../../../../store';
 import { MoveGoalUpAction, MoveGoalDownAction } from '../../../Order/reducer';
+import { GoalRecord } from '../../../../models/Goal';
 
 interface OwnProps {
   spendingToThisGoal: number;

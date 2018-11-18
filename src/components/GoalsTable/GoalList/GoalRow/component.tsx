@@ -1,6 +1,8 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import GoalAttribute from './GoalAttribute';
+import { GoalRecord } from '../../../../models/Goal';
+
 
 interface DispatchProps {
   onUpClick: (id: string) => void;
@@ -12,6 +14,12 @@ interface StateProps {
   spendingSummary: number;
 }
 
+export interface GoalRowType {
+  type: string;
+  goalTotal: string;
+  deadlineYear: string;
+  spendingPerMonth: string;
+}
 
 type GoalRowProps = DispatchProps & StateProps;
 

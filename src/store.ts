@@ -10,6 +10,7 @@ import availableCash from './components/AvailableCash/reducer';
 import goals from './components/GoalsTable/reducer';
 import order from './components/Order/reducer';
 import spending from './components/Spending/reducer';
+import { GoalRecord } from './models/Goal';
 
 const reducer = combineReducers({
   availableCash,

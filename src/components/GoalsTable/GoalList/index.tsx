@@ -1,5 +1,6 @@
 import * as React from 'react';
 import GoalRowContainer from './GoalRow';
+import { GoalRecord } from '../../../models/Goal';
 
 
 interface GoalListProps {
