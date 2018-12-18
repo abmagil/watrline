@@ -18,7 +18,7 @@ const Lock = ({className, onClick}: LockProps) => (
 
 interface GoalAttributeProps {
   isLocked: boolean;
-  value: string | number | Array<string> | undefined;
+  value: number;
   attrName: LockableAttrName;
   goalID: string;
   lockedHandler: () => void;
@@ -39,6 +39,7 @@ class GoalAttribute extends React.PureComponent<GoalAttributeProps> {
                 <Lock className="lock" onClick={lockedHandler} />
                 <DebouncedComponent debouncePeriod={1000}>
                   <input
+                    type="number"
                     className="editable"
                     value={value}
                     onChange={updateHandler}

@@ -9,16 +9,19 @@ import { Moment } from 'moment';
 export const LockableAttributes: Array<LockableAttrName> = ['spendingPerMonth', 'goalTotal', 'deadlineYear'];
 declare type LockableAttrName = 'spendingPerMonth'|'goalTotal'|'deadlineYear';
 
+export interface GoalBase {
+  type: string;
+  goalTotal: number;
+  deadlineYear: number;
+  spendingPerMonth: number;
+}
+
 /**
  * The basic data which makes up a goal
  */
-export interface GoalData {
-  type: string;
-  goalTotal: number;
-  spendingPerMonth: number;
+export interface GoalData extends GoalBase {
   lockedAttr?: LockableAttrName;
   startingYear: number;
-  deadlineYear: number;
 }
 
 /**

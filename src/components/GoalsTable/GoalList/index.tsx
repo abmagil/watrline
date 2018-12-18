@@ -6,12 +6,10 @@ import { GoalRecord } from '../../../models/Goal';
 interface GoalListProps {
   orderedGoals: Array<GoalRecord>;
   cumulativeGoalSpending: Array<number>;
-  children: any;
 }
 
-const GoalList = ({ orderedGoals, cumulativeGoalSpending = [], children }: GoalListProps) => (
-  <tbody>
-    {children}
+const GoalList = ({ orderedGoals, cumulativeGoalSpending = [] }: GoalListProps) => (
+  <React.Fragment>
     {orderedGoals.map((goal, idx) => (
       <GoalRowContainer
         goal={goal}
@@ -19,7 +17,7 @@ const GoalList = ({ orderedGoals, cumulativeGoalSpending = [], children }: GoalL
         key={goal.id}
       />
     ))}
-  </tbody>
+  </React.Fragment>
 );
 
 export default GoalList;

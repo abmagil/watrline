@@ -4,6 +4,8 @@
   combineReducers,
 } from 'redux';
 
+import * as Moment from 'moment';
+
 import defaultCategories, { Categories } from './default-categories';
 
 import availableCash from './components/AvailableCash/reducer';
@@ -35,7 +37,7 @@ const initialState: StoreShape = {
       goalTotal: 1200,
       spendingPerMonth: 10,
       lockedAttr: 'spendingPerMonth',
-      startingYear: Date.now(),
+      startingYear: Moment(Date.now()).year(),
       deadlineYear: 2028,
     },
     '2': {
@@ -44,7 +46,7 @@ const initialState: StoreShape = {
       deadlineYear: 2038,
       spendingPerMonth: 100,
       lockedAttr: 'deadlineYear',
-      startingYear: Date.now(),
+      startingYear: Moment(Date.now()).year(),
       goalTotal: 23800,
     },
     '3': {
@@ -53,7 +55,7 @@ const initialState: StoreShape = {
       goalTotal: 12000,
       deadlineYear: new Date().getFullYear() + 6,
       lockedAttr: 'goalTotal',
-      startingYear: Date.now(),
+      startingYear: Moment(Date.now()).year(),
       spendingPerMonth: 260.8695652173913,
     },
   },

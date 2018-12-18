@@ -43,6 +43,7 @@ class DebouncedComponent extends React.Component<DebouncedComponentProps, Deboun
   _onBlur(e: React.ChangeEvent<HTMLInputElement>) {
     e.persist();
     const { onBlur } = React.Children.only(this.props.children).props;
+    // tslint:disable-next-line:no-unused-expression
     onBlur && onBlur(e);
     this.debouncedActionCreator.flush();
   }

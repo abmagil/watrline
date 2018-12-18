@@ -1,24 +1,15 @@
 import * as React from 'react';
 import GoalList from './GoalList';
 import cdf from '../../utils/cdf';
-import { GoalRowType } from './GoalList/GoalRow/component';
 import { GoalRecord, GoalData } from '../../models/Goal';
+import GoalAdder from './GoalAdder';
 
-type GoalFn = <T>(fn: T) => GoalRowType;
-interface DispatchProps {
-  maybeAddGoal: (args: GoalRowType) => void;
-  goalCompletionFn: GoalFn;
-}
 
-interface StateProps {
+interface TableProps {
   orderedGoals: Array<GoalRecord>;
 }
-
-type TableProps = DispatchProps & StateProps;
-
 interface TableState {
-  cumulativeGoalSpending: Array<number>,
-  goalData: GoalRowType|Stringified<GoalData>;
+  cumulativeGoalSpending: Array<number>;
 }
 
 const cumulativeGoalSpendingFor = (goals: Array<GoalData>) => (
@@ -26,33 +17,12 @@ const cumulativeGoalSpendingFor = (goals: Array<GoalData>) => (
 );
 
 class GoalsTable extends React.Component<TableProps, TableState> {
-  onClick: (args: Stringified<GoalRowType>) => void;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
   
   constructor(props: TableProps) {
     super(props);
-    this.onClick = this.props.maybeAddGoal.bind(this);
-    const changeHandler = this.props.goalCompletionFn;
-    this.onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { currentTarget } = event;
-      const newData = changeHandler({
-        ...this.state.goalData,
-        [currentTarget.name]: currentTarget.value,
-      });
-      this.setState({
-        goalData: newData,
-      });
-    };
 
     this.state = {
       cumulativeGoalSpending: [],
-      goalData: {
-        type: '',
-        goalTotal: '',
-        deadlineYear: '',
-        spendingPerMonth: '',
-        startingYear: `${new Date().getFullYear()}`,
-      },
     };
   }
 
@@ -65,8 +35,8 @@ class GoalsTable extends React.Component<TableProps, TableState> {
 
   render() {
     const { orderedGoals } = this.props;
-    const { cumulativeGoalSpending, goalData } = this.state;
-    
+    const { cumulativeGoalSpending } = this.state;
+
     return (
       <table className="goalsTable">
         <thead className="goalsTable__header">
@@ -78,53 +48,12 @@ class GoalsTable extends React.Component<TableProps, TableState> {
             <td>&nbsp;</td>
           </tr>
         </thead>
+        <tbody>
+          <GoalAdder />
           <GoalList
             orderedGoals={orderedGoals}
-            cumulativeGoalSpending={cumulativeGoalSpending}
-          >
-            <tr>
-              <td>
-                <input
-                  name="type"
-                  placeholder="Description" 
-                  value={goalData.type}
-                  onChange={this.onChange}
-                />
-              </td>
-              <td>
-                <input
-                  name="goalTotal"
-                  placeholder="Cost"
-                  value={goalData.goalTotal}
-                  onChange={this.onChange}
-                  type="number"
-                />
-              </td>
-              <td>
-                <input
-                  name="deadlineYear"
-                  placeholder="Deadline"
-                  value={goalData.deadlineYear}
-                  onChange={this.onChange}
-                />
-              </td>
-              <td>
-                <input
-                  name="spendingPerMonth"
-                  placeholder="Monthly Cost"
-                  value={goalData.spendingPerMonth}
-                  onChange={this.onChange}
-                />
-              </td>
-              <td>
-                <button
-                  onClick={() => this.onClick(goalData)}
-                >
-                  Add
-                </button>
-              </td>
-            </tr>
-          </GoalList>
+            cumulativeGoalSpending={cumulativeGoalSpending} />
+        </tbody>
         <tfoot>
           <tr>
             <td colSpan={3} />

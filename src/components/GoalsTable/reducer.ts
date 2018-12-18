@@ -6,11 +6,15 @@ import goalSolver from '../../utils/goal-solver';
 import { StoreShape } from '../../store';
 import { GoalRecord, GoalData } from 'src/models/Goal';
 
+const errorCallback = () => {
+  console.log('ERROR: Attempting to solve incomplete Goal');
+};
+
 const defaultedStartTime = <T>(goal: T): T & {startingYear: number} => {
   return defaults({ startingYear: new Date().getFullYear() }, goal);
 }
 
-const fullGoalFromPartial = goalSolver();
+const fullGoalFromPartial = goalSolver(errorCallback);
 
 export interface AddGoalAction {
   type: 'GOAL:ADD';
@@ -82,7 +86,10 @@ const reducer: Reducer<ObjectOf<GoalRecord>, GoalActions> = (state = {}, action:
     };
   }
   case 'GOAL:UPDATE': {
-    const updateGoal = state[action.goalID];
+    const updateGoal = {
+      ...state[action.goalID],
+      [action.attrName]: action.newVal
+    };
     return {
       ...state,
       [action.goalID]: goalReducer(updateGoal, action),

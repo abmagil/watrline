@@ -14,13 +14,6 @@ interface StateProps {
   spendingSummary: number;
 }
 
-export interface GoalRowType {
-  type: string;
-  goalTotal: string;
-  deadlineYear: string;
-  spendingPerMonth: string;
-}
-
 type GoalRowProps = DispatchProps & StateProps;
 
 const ActionButton = ({...props}: any) => (<div />);
