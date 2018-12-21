@@ -2,6 +2,7 @@ import * as React from 'react';
 import { GoalBase, LockableAttributes } from 'src/models/Goal';
 import { includes, last } from 'lodash/fp';
 import remainingAttr from '../../../utils/remaining-attribute-name';
+import './styles.css';
 
 type GoalFn = <T>(fn: T) => GoalRowType;
 interface GoalAdderProps {
@@ -79,16 +80,13 @@ export default class GoalAdder extends React.Component<GoalAdderProps, GoalAdder
   render() {
     const { maybeAddGoal } = this.props;
     const { goalData } = this.state;
-    return <tr>
-      <td>
+    return <li className="GoalAdder">
         <input
           name="type"
           placeholder="Description"
           value={goalData.type}
           onChange={this.onChange}
         />
-      </td>
-      <td>
         <input
           name="goalTotal"
           placeholder="Cost"
@@ -96,28 +94,21 @@ export default class GoalAdder extends React.Component<GoalAdderProps, GoalAdder
           onChange={this.onChange}
           type="number"
         />
-      </td>
-      <td>
         <input
           name="deadlineYear"
           placeholder="Deadline"
           value={goalData.deadlineYear}
           onChange={this.onChange}
         />
-      </td>
-      <td>
         <input
           name="spendingPerMonth"
           placeholder="Monthly Cost"
           value={goalData.spendingPerMonth}
           onChange={this.onChange}
         />
-      </td>
-      <td>
         <button onClick={() => maybeAddGoal(goalData)}>
           Add
           </button>
-      </td>
-    </tr>
+    </li>
   }
 }

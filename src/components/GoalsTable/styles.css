@@ -1,0 +1,19 @@
+.GoalsTable {
+  width: 100%;
+  min-width: 600px;
+}
+
+.GoalsTable__header {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.GoalsTable__footer {
+  border-top: 1px dashed black;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.GoalsTable__footer .GoalsTable__total {
+  grid-column-start: 4;
+}

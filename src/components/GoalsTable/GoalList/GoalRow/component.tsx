@@ -2,7 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import GoalAttribute from './GoalAttribute';
 import { GoalRecord } from '../../../../models/Goal';
-
+import './styles.css';
 
 interface DispatchProps {
   onUpClick: (id: string) => void;
@@ -19,14 +19,14 @@ type GoalRowProps = DispatchProps & StateProps;
 const ActionButton = ({...props}: any) => (<div />);
 
 const GoalRow = ({ goal, spendingSummary, onUpClick, onDownClick }: GoalRowProps) => (
-  <tr className={classNames(['goalRow', spendingSummary])}>
-    <td className="cell description">
+  <li className={classNames(['GoalRow', spendingSummary])}>
+    <span className="cell description">
       {goal.type}
-    </td>
+    </span>
     <GoalAttribute attrName={'goalTotal'} goalID={goal.id} />
     <GoalAttribute attrName={'deadlineYear'} goalID={goal.id} />
     <GoalAttribute attrName={'spendingPerMonth'} goalID={goal.id} />
-    <td className="cell move">
+    <span className="cell move">
       <ActionButton
         classNames={['up']} 
         onClick={() => onUpClick(goal.id)}
@@ -37,8 +37,8 @@ const GoalRow = ({ goal, spendingSummary, onUpClick, onDownClick }: GoalRowProps
         onClick={() => onDownClick(goal.id)}
         altText="reduce priority"
       />
-    </td>
-  </tr>
+    </span>
+  </li>
 );
 
 export default GoalRow;

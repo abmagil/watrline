@@ -1,0 +1,16 @@
+.GoalRow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.GoalRow .description {
+  text-align: left;
+}
+
+.GoalRow .goalAttribute {
+  text-align: left;
+}
+
+li {
+  list-style-type: none;
+}

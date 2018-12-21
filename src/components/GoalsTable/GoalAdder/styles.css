@@ -1,0 +1,15 @@
+.GoalAdder {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.GoalAdder input {
+  width: 60%;
+}
+
+.GoalAdder button {
+  width: 5em;
+  padding: 5px 1em;
+  border-radius: 5px;
+  
+}

@@ -3,6 +3,7 @@ import GoalList from './GoalList';
 import cdf from '../../utils/cdf';
 import { GoalRecord, GoalData } from '../../models/Goal';
 import GoalAdder from './GoalAdder';
+import './styles.css';
 
 
 interface TableProps {
@@ -17,7 +18,7 @@ const cumulativeGoalSpendingFor = (goals: Array<GoalData>) => (
 );
 
 class GoalsTable extends React.Component<TableProps, TableState> {
-  
+
   constructor(props: TableProps) {
     super(props);
 
@@ -38,32 +39,26 @@ class GoalsTable extends React.Component<TableProps, TableState> {
     const { cumulativeGoalSpending } = this.state;
 
     return (
-      <table className="goalsTable">
-        <thead className="goalsTable__header">
-          <tr>
-            <td>Description</td>
-            <td>Cost</td>
-            <td>Deadline</td>
-            <td>Monthly Cost</td>
-            <td>&nbsp;</td>
-          </tr>
-        </thead>
-        <tbody>
+      <div className="GoalsTable">
+        <div className="GoalsTable__header">
+          <span>Description</span>
+          <span>Cost</span>
+          <span>Deadline</span>
+          <span>Monthly Cost</span>
+          <span>&nbsp;</span>
+        </div>
+        <ol>
           <GoalAdder />
           <GoalList
             orderedGoals={orderedGoals}
             cumulativeGoalSpending={cumulativeGoalSpending} />
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colSpan={3} />
-            <td className="goalsTable__total">
-              {cumulativeGoalSpending[orderedGoals.length - 1] || 0}
-            </td>
-            <td />
-          </tr>
-        </tfoot>
-      </table>
+        </ol>
+        <div className="GoalsTable__footer">
+          <span className="GoalsTable__total">
+            {cumulativeGoalSpending[orderedGoals.length - 1] || 0}
+          </span>
+        </div>
+      </div>
     );
   }
 }
