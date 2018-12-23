@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { GoalBase, LockableAttributes } from 'src/models/Goal';
+import { GoalBase, LockableAttributes } from '../../../models/Goal';
 import { includes, last } from 'lodash/fp';
 import remainingAttr from '../../../utils/remaining-attribute-name';
 import './styles.css';

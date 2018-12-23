@@ -14,9 +14,9 @@ function setup() {
 }
 
 describe('GoalList', () => {
-  it('should render one GoalRow into the tbody for each element in orderedGoals prop', () => {
+  it('should render one GoalRow for each element in orderedGoals prop', () => {
     const { wrapper } = setup();
-    expect(wrapper.find('tbody tr').length).toBe(0);
+    expect(wrapper.find('li').length).toBe(0);
 
     wrapper.setProps({
       orderedGoals: [
@@ -26,7 +26,7 @@ describe('GoalList', () => {
         {id: '4', goalTotal: 12, deadlineYear: new Date().getFullYear(), spendingPerMonth: 1},
       ],
     });
-    expect(wrapper.find('tbody').children().length).toBe(4);
+    expect(wrapper.children().length).toBe(4);
   });
 });
 

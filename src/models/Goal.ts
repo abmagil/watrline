@@ -4,8 +4,6 @@
  * I'm trying very hard to keep goals as POJOs, so they can be instantiated with
  * object literals.
  */
-import { Moment } from 'moment';
-
 export const LockableAttributes: Array<LockableAttrName> = ['spendingPerMonth', 'goalTotal', 'deadlineYear'];
 declare type LockableAttrName = 'spendingPerMonth'|'goalTotal'|'deadlineYear';
 
@@ -14,6 +12,7 @@ export interface GoalBase {
   goalTotal: number;
   deadlineYear: number;
   spendingPerMonth: number;
+  startingDate?: Date
 }
 
 /**
@@ -32,10 +31,12 @@ export interface GoalRecord extends GoalData {
   lockedAttr: LockableAttrName;
 }
 
-export interface MonthsUntil {
-  deadlineMoment: Moment;
-  startingMoment: Moment;
+export interface Total {
+  deadlineYear: number;
+  spendingPerMonth: number;
+  startingDate?: Date;
 }
+
 export interface MonthsOfSpending {
   goalTotal: number;
   spendingPerMonth: number;
@@ -43,14 +44,14 @@ export interface MonthsOfSpending {
 export interface SpendingPerMonth {
   goalTotal: number;
   deadlineYear: number;
-  startingYear?: number;
+  startingDate?: Date;
 }
 export interface EndYear {
   goalTotal: number;
   spendingPerMonth: number;
-  startingYear?: number;
+  startingDate?: Date;
 }
 
-export type GoalMissingTotal = Omit<GoalData, 'goalTotal'>
-export type GoalMissingDeadline = Omit<GoalData, 'deadlineYear'>
-export type GoalMissingSpendingPerMonth = Omit<GoalData, 'spendingPerMonth'>
+export type GoalMissingTotal = Omit<GoalBase, 'goalTotal'>
+export type GoalMissingDeadline = Omit<GoalBase, 'deadlineYear'>
+export type GoalMissingSpendingPerMonth = Omit<GoalBase, 'spendingPerMonth'>

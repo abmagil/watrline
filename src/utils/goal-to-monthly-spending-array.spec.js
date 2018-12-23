@@ -1,5 +1,4 @@
 import goalToMonthlySpendingArray from './goal-to-monthly-spending-array';
-import moment from 'moment';
 
 describe('goalToMonthlySpendingArray', () => {
   it('should return an empty array by default', () => {
@@ -8,7 +7,6 @@ describe('goalToMonthlySpendingArray', () => {
   describe('for a valid goal', () => {
     it(`should have the last entry equivalent to the goal's total cost`, () => {
       const validGoal = {
-        deadlineYear: moment().year() + 1,
         goalTotal: 115,
         spendingPerMonth: 10,
       };
@@ -18,7 +16,6 @@ describe('goalToMonthlySpendingArray', () => {
     });
     it('should have the first entry equivalent to the monthly spending', () => {
       const validGoal = {
-        deadlineYear: moment().year() + 1,
         goalTotal: 115,
         spendingPerMonth: 10
       };
@@ -28,7 +25,6 @@ describe('goalToMonthlySpendingArray', () => {
     });
     it('should have one entry for each month until the goal is paid', () => {
       const validGoal = {
-        deadlineYear: moment().year() + 1,
         goalTotal: 115,
         spendingPerMonth: 10
       };
