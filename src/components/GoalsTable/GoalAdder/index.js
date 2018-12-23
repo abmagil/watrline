@@ -8,13 +8,13 @@ import { GoalRowType } from './component';
 import partialToWhole from '../../../utils/goal-solver';
 
 
-const mapStateToProps = (state: StoreShape) => ({
+const mapStateToProps = (state) => ({
   orderedGoals: orderedGoalsFrom(state),
 });
 
-const mapDispatchToProps = (dispatch: Dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
   goalCompletionFn: partialToWhole(identity),
-  maybeAddGoal: ({type, goalTotal, deadlineYear, spendingPerMonth}: GoalRowType) => {
+  maybeAddGoal: ({type, goalTotal, deadlineYear, spendingPerMonth}) => {
     dispatch(
       addGoal({
         deadlineYear: parseInt(deadlineYear, 10),

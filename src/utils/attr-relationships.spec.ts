@@ -1,5 +1,5 @@
 import * as calculated from './attr-relationships';
-import { EndYear, SpendingPerMonth, Total } from 'src/models/Goal';
+import { EndYear, SpendingPerMonth, Total } from '../models/Goal';
 
 describe('Attribute relationship functions', () => {
   describe('endYear', () => {

@@ -1,9 +1,9 @@
 import * as Goal from '../models/Goal';
-import * as setYear from 'date-fns/set_year';
-import * as getYear from 'date-fns/get_year';
-import * as differenceInMonths from 'date-fns/difference_in_months';
-import * as addMonths from 'date-fns/add_months';
-import * as isAfter from 'date-fns/is_after';
+import setYear from 'date-fns/set_year';
+import getYear from 'date-fns/get_year';
+import differenceInMonths from 'date-fns/difference_in_months';
+import addMonths from 'date-fns/add_months';
+import isAfter from 'date-fns/is_after';
 import { isFinite } from 'lodash';
 
 // Calculates distance to the end of given year
