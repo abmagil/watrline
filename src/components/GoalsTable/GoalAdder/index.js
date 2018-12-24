@@ -1,10 +1,10 @@
 import { identity } from 'lodash';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
+// import { Dispatch } from 'redux';
 import GoalAdder from './component';
 import { addGoal, orderedGoalsFrom } from '../reducer';
-import { StoreShape } from '../../../store';
-import { GoalRowType } from './component';
+// import { StoreShape } from '../../../store';
+// import { GoalRowType } from './component';
 import partialToWhole from '../../../utils/goal-solver';
 
 

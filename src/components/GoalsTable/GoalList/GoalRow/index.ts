@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { Dispatch, ActionCreator } from 'redux';
 import GoalRow from './component';
-import { availableCashFrom } from '../../../AvailableCash/';
+import { availableCashFrom } from '../../../AvailableCash';
 import spendingSummary from '../../../../utils/spending-summary';
 import { StoreShape } from '../../../../store';
 import { MoveGoalUpAction, MoveGoalDownAction } from '../../../Order/reducer';

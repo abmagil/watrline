@@ -1,10 +1,10 @@
 import { Reducer } from 'redux';
 import { defaults } from 'lodash/fp';
-import * as uuid from 'uuid/v1';
+import uuid from 'uuid/v1';
 import goalReducer from './GoalList/GoalRow/reducer';
 import goalSolver from '../../utils/goal-solver';
 import { StoreShape } from '../../store';
-import { GoalRecord, GoalData } from 'src/models/Goal';
+import { GoalRecord, GoalData } from '../../models/Goal';
 
 const errorCallback = () => {
   console.log('ERROR: Attempting to solve incomplete Goal');

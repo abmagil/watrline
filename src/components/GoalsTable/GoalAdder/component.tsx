@@ -13,6 +13,7 @@ interface GoalAdderProps {
 interface GoalAdderState {
   goalData: GoalRowType;
   lastTwoChangedAttrs: Array<LockableAttrName>;
+  isReady: boolean;
 }
 
 export type GoalRowType = Stringified<GoalBase>;
@@ -29,6 +30,7 @@ export default class GoalAdder extends React.Component<GoalAdderProps, GoalAdder
         deadlineYear: '',
       },
       lastTwoChangedAttrs: [],
+      isReady: false,
     }
   }
 
@@ -79,7 +81,7 @@ export default class GoalAdder extends React.Component<GoalAdderProps, GoalAdder
 
   render() {
     const { maybeAddGoal } = this.props;
-    const { goalData } = this.state;
+    const { goalData, isReady } = this.state;
     return <li className="GoalAdder">
         <input
           name="type"
@@ -106,7 +108,7 @@ export default class GoalAdder extends React.Component<GoalAdderProps, GoalAdder
           value={goalData.spendingPerMonth}
           onChange={this.onChange}
         />
-        <button onClick={() => maybeAddGoal(goalData)}>
+        <button onClick={() => isReady && maybeAddGoal(goalData)}>
           Add
           </button>
     </li>

@@ -11,7 +11,9 @@ const errorCallback = () => {
 
 const partialToCompleteGoal = goalSolver(errorCallback);
 
-const goalReducer: Reducer<GoalRecord, UpdateGoalAction> = (goal: GoalRecord, action: UpdateGoalAction) => {
+const goalReducer: Reducer<GoalRecord, UpdateGoalAction> = (goal, action: UpdateGoalAction) => {
+  if (!goal) { throw new Error("Goal Reducer called without a goal") }
+  
   const { attrName: changingAttr} = action;
   const { lockedAttr } = goal;
   const attrToCalculate = remainingAttr([lockedAttr, changingAttr])[0];
@@ -19,9 +21,8 @@ const goalReducer: Reducer<GoalRecord, UpdateGoalAction> = (goal: GoalRecord, ac
   if (includes(LockableAttributes, attrToCalculate)) {
     return <GoalRecord>partialToCompleteGoal(omit(goal, attrToCalculate));
   }
-  else {
-    throw new Error('oopsy doodle');
-  }
+
+  throw new Error('oopsy doodle');
 };
 
 export default goalReducer;

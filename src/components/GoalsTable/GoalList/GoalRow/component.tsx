@@ -11,7 +11,7 @@ interface DispatchProps {
 
 interface StateProps {
   goal: GoalRecord;
-  spendingSummary: number;
+  spendingSummary: string;
 }
 
 type GoalRowProps = DispatchProps & StateProps;
