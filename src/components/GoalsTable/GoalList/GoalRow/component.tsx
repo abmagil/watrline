@@ -24,9 +24,9 @@ const GoalRow = ({ goal, spendingSummary, onUpClick, onDownClick }: GoalRowProps
     <span className="cell description">
       {goal.type}
     </span>
-    <GoalAttribute attrName={'goalTotal'} goalID={goal.id} />
-    <GoalAttribute attrName={'deadlineYear'} goalID={goal.id} />
-    <GoalAttribute attrName={'spendingPerMonth'} goalID={goal.id} />
+    <GoalAttribute attrName={'goalTotal'} goalID={goal.id} title={"Total"} />
+    <GoalAttribute attrName={'deadlineYear'} goalID={goal.id} title={"Finished By"}/>
+    <GoalAttribute attrName={'spendingPerMonth'} goalID={goal.id} title={"Monthly Spending"}/>
     <span className="cell move">
       <ActionButton
         classNames={['up']} 

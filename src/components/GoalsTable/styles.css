@@ -1,20 +1,2 @@
-.GoalsTable {
-  max-width: 960px;
-  min-width: 600px;
-  margin: 0 auto;
-}
-
-.GoalsTable__header {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-}
-
-.GoalsTable__footer {
-  border-top: 1px dashed black;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-}
-
-.GoalsTable__footer .GoalsTable__total {
-  grid-column-start: 4;
-}
+.GoalsTable .GoalsTable__header {
+  display: none; }

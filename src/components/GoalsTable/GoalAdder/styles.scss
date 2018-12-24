@@ -1,11 +1,18 @@
 .GoalAdder {
   display: block;
   grid-template-columns: repeat(5, 1fr);
-  margin-bottom: 25px; }
-  .GoalAdder input {
+  margin-bottom: 25px;
+  
+
+ & input {
     width: 60%;
-    text-align: right; }
-  .GoalAdder button {
+    text-align: right;
+  }
+  
+ & button {
     width: 5em;
     padding: 5px 1em;
-    border-radius: 5px; }
+    border-radius: 5px;
+  }
+}
+

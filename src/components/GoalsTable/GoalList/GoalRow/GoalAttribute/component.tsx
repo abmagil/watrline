@@ -4,25 +4,28 @@ import DebouncedComponent from '../../../../DebouncedComponent';
 import './styles.css';
 // import NumericInput from '../../../../NumericInput';
 import {ReactComponent as Lock} from '../../../../../lock.svg';
+import classNames from 'classnames';
 
 interface GoalAttributeProps {
   isLocked: boolean;
   value: number;
   attrName: LockableAttrName;
   goalID: string;
+  title: string;
   lockedHandler: () => void;
   updateHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 class GoalAttribute extends React.PureComponent<GoalAttributeProps> {
   render() {
-    const { isLocked, value, lockedHandler, updateHandler } = this.props;
+    const { isLocked, value, lockedHandler, updateHandler, title } = this.props;
     return (
-      <span className="GoalAttribute">
+      <span className={classNames([{"locked": isLocked}, "GoalAttribute"])}>
         {isLocked
-          ? <p>{value}</p>
+          ? <p>{title}: {value}</p>
           : (
             <React.Fragment>
+              {title}
               <Lock className="lock" onClick={lockedHandler} />
               <DebouncedComponent debouncePeriod={1000}>
                 <input

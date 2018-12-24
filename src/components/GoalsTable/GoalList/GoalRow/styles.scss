@@ -2,10 +2,22 @@
   border-style: solid none none;
   border-width: 3px;
   box-shadow: 5px 3px 5px 0px rgba(200, 200, 200, 0.32);
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  box-sizing: border-box;
   margin-bottom: 15px;
   padding: 5px 15px;
+
+  display: flex;
+  flex-direction: column;
+  height: 8em;
+  justify-content: space-between;
+  width: 100%;
+
+
+  
+  // @media screen and (min-width: 540px) {
+  //   display: grid;
+  //   grid-template-columns: repeat(5, 1fr);    
+  // }
 
   // Spending Summary Feedback
   &.veryLow {
@@ -21,17 +33,34 @@
     border-top-color: red;
   }
 
-  & .description {
+  .description {
     text-align: left;
+    font-size: 1.6em;
+    font-weight: 700;
+    order: 0;
   }
   
-  & .goalAttribute {
+  .GoalAttribute {
     text-align: left;
+    order: 10;
+
+    &.locked {
+      order: 1;
+    }
   }
   
   li {
     list-style-type: none;
+
+    p {
+      align-self: flex-end;
+    }
+  
+    span {
+      display: inline;
+    }
   }
+
 }
 
 
