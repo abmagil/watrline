@@ -5,33 +5,18 @@
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   margin-bottom: 15px;
-  padding: 5px 15px;
-}
-
-.GoalRow.veryLow {
-  border-top-color: blue;
-}
-
-.GoalRow.onTrack {
-  border-top-color: green;
-}
-
-.GoalRow.tight {
-  border-top-color: yellow;
-}
-
-.GoalRow.over {
-  border-top-color: red;
-}
-
-.GoalRow .description {
-  text-align: left;
-}
-
-.GoalRow .goalAttribute {
-  text-align: left;
-}
-
-li {
-  list-style-type: none;
-}
+  padding: 5px 15px; }
+  .GoalRow.veryLow {
+    border-top-color: blue; }
+  .GoalRow.onTrack {
+    border-top-color: green; }
+  .GoalRow.tight {
+    border-top-color: yellow; }
+  .GoalRow.over {
+    border-top-color: red; }
+  .GoalRow .description {
+    text-align: left; }
+  .GoalRow .goalAttribute {
+    text-align: left; }
+  .GoalRow li {
+    list-style-type: none; }

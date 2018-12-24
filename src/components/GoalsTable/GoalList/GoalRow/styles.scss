@@ -1,0 +1,38 @@
+.GoalRow {
+  border-style: solid none none;
+  border-width: 3px;
+  box-shadow: 5px 3px 5px 0px rgba(200, 200, 200, 0.32);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 15px;
+  padding: 5px 15px;
+
+  // Spending Summary Feedback
+  &.veryLow {
+    border-top-color: blue;
+  }
+  &.onTrack {
+    border-top-color: green;
+  }
+  &.tight {
+    border-top-color: yellow;
+  }
+  &.over {
+    border-top-color: red;
+  }
+
+  & .description {
+    text-align: left;
+  }
+  
+  & .goalAttribute {
+    text-align: left;
+  }
+  
+  li {
+    list-style-type: none;
+  }
+}
+
+
+
