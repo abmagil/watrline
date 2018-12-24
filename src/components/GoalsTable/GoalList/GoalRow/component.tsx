@@ -2,6 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import GoalAttribute from './GoalAttribute';
 import { GoalRecord } from '../../../../models/Goal';
+import { SpendingSummary } from '../../../../utils/spending-summary';
 import './styles.css';
 
 interface DispatchProps {
@@ -11,7 +12,7 @@ interface DispatchProps {
 
 interface StateProps {
   goal: GoalRecord;
-  spendingSummary: string;
+  spendingSummary: SpendingSummary;
 }
 
 type GoalRowProps = DispatchProps & StateProps;

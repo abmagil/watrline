@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { Dispatch, ActionCreator } from 'redux';
 import GoalRow from './component';
 import { availableCashFrom } from '../../../AvailableCash';
-import spendingSummary from '../../../../utils/spending-summary';
+import spendingSummary, { SpendingSummary } from '../../../../utils/spending-summary';
 import { StoreShape } from '../../../../store';
 import { MoveGoalUpAction, MoveGoalDownAction } from '../../../Order/reducer';
 import { GoalRecord } from '../../../../models/Goal';
@@ -19,7 +19,7 @@ const mapStateToProps = (state: StoreShape, ownProps: OwnProps) => {
   const { goal, spendingToThisGoal } = ownProps;
   return {
     goal,
-    spendingSummary: spendingSummary(spendingToThisGoal / availableCashFrom(state)),
+    spendingSummary: spendingSummary(spendingToThisGoal / availableCashFrom(state)) as SpendingSummary,
   };
 };
 

@@ -1,6 +1,7 @@
 .GoalsTable {
-  width: 100%;
+  max-width: 960px;
   min-width: 600px;
+  margin: 0 auto;
 }
 
 .GoalsTable__header {

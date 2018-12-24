@@ -1,4 +1,5 @@
-const spendingSummary = (pcntSpent) => {
+export type SpendingSummary = "veryLow" | "onTrack" | "tight" | "over"
+const spendingSummary = (pcntSpent: number) => {
   if (pcntSpent < 0.6) {
     return 'veryLow';
   } else if (pcntSpent < 0.95) {

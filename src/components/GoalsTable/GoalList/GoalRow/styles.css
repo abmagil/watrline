@@ -1,6 +1,26 @@
 .GoalRow {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+}
+
+.GoalRow.veryLow {
+  border-top-color: blue;
+}
+
+.GoalRow.onTrack {
+  border-top-color: green;
+}
+
+.GoalRow.tight {
+  border-top-color: yellow;
+}
+
+.GoalRow.over {
+  border-top-color: red;
 }
 
 .GoalRow .description {
