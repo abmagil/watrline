@@ -3,19 +3,7 @@ import * as React from 'react';
 import DebouncedComponent from '../../../../DebouncedComponent';
 import './styles.css';
 // import NumericInput from '../../../../NumericInput';
-// import Lock from '../../assets/svg/locked.svg';
-
-interface LockProps {
-  className: string;
-  onClick: () => void;
-}
-
-const Lock = ({ className, onClick }: LockProps) => (
-  <svg
-    className={className}
-    onClick={onClick}
-  />
-);
+import {ReactComponent as Lock} from '../../../../../lock.svg';
 
 interface GoalAttributeProps {
   isLocked: boolean;
@@ -26,12 +14,11 @@ interface GoalAttributeProps {
   updateHandler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-// const GoalAttribute = ({ isLocked, value, lockedHandler, updateHandler }: GoalAttributeProps) => {
 class GoalAttribute extends React.PureComponent<GoalAttributeProps> {
   render() {
     const { isLocked, value, lockedHandler, updateHandler } = this.props;
     return (
-      <span className="goalAttribute">
+      <span className="GoalAttribute">
         {isLocked
           ? <p>{value}</p>
           : (

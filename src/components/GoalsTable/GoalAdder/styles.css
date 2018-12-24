@@ -1,6 +1,7 @@
 .GoalAdder {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 25px;
 }
 
 .GoalAdder input {
@@ -11,5 +12,4 @@
   width: 5em;
   padding: 5px 1em;
   border-radius: 5px;
-  
 }
