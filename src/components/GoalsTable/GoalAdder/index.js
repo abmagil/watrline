@@ -24,7 +24,6 @@ const mapDispatchToProps = (dispatch) => ({
         type,
       })
     );
-    throw new Error('Need to gate behind valid goal');
   },
 });
 
