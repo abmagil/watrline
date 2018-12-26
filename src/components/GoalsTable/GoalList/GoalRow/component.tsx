@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import { Draggable } from 'react-beautiful-dnd';
 import GoalAttribute from './GoalAttribute';
 import { GoalRecord } from '../../../../models/Goal';
 import { SpendingSummary } from '../../../../utils/spending-summary';
@@ -13,33 +14,42 @@ interface DispatchProps {
 interface StateProps {
   goal: GoalRecord;
   spendingSummary: SpendingSummary;
+  index: number;
 }
 
 type GoalRowProps = DispatchProps & StateProps;
 
-const ActionButton = ({...props}: any) => (<div />);
+const ActionButton = ({ ...props }: any) => (<div />);
 
-const GoalRow = ({ goal, spendingSummary, onUpClick, onDownClick }: GoalRowProps) => (
-  <li className={classNames(['GoalRow', spendingSummary])}>
-    <span className="cell description">
-      {goal.type}
-    </span>
-    <GoalAttribute attrName={'goalTotal'} goalID={goal.id} title={"Total"} />
-    <GoalAttribute attrName={'deadlineYear'} goalID={goal.id} title={"Finished By"}/>
-    <GoalAttribute attrName={'spendingPerMonth'} goalID={goal.id} title={"Monthly Spending"}/>
-    <span className="cell move">
-      <ActionButton
-        classNames={['up']} 
-        onClick={() => onUpClick(goal.id)}
-        altText="increase priority"
-      />
-      <ActionButton
-        classNames={['down']}
-        onClick={() => onDownClick(goal.id)}
-        altText="reduce priority"
-      />
-    </span>
-  </li>
+const GoalRow = ({ goal, spendingSummary, onUpClick, onDownClick, index }: GoalRowProps) => (
+  <Draggable draggableId={goal.id} index={index}>
+    {(provided) => (
+      <li
+        {...provided.draggableProps}
+        {...provided.dragHandleProps}
+        ref={provided.innerRef}
+        className={classNames(['GoalRow', spendingSummary])}>
+        <span className="cell description">
+          {goal.type}
+        </span>
+        <GoalAttribute attrName={'goalTotal'} goalID={goal.id} title={"Total"} />
+        <GoalAttribute attrName={'deadlineYear'} goalID={goal.id} title={"Finished By"} />
+        <GoalAttribute attrName={'spendingPerMonth'} goalID={goal.id} title={"Monthly Spending"} />
+        <span className="cell move">
+          <ActionButton
+            classNames={['up']}
+            onClick={() => onUpClick(goal.id)}
+            altText="increase priority"
+          />
+          <ActionButton
+            classNames={['down']}
+            onClick={() => onDownClick(goal.id)}
+            altText="reduce priority"
+          />
+        </span>
+      </li>
+    )}
+  </Draggable>
 );
 
 export default GoalRow;

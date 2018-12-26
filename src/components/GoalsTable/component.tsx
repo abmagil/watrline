@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { DragDropContext, Droppable, OnDragEndResponder } from 'react-beautiful-dnd';
 import GoalList from './GoalList';
 import cdf from '../../utils/cdf';
 import { GoalRecord, GoalData } from '../../models/Goal';
@@ -8,8 +9,9 @@ import './styles.css';
 
 interface TableProps {
   orderedGoals: Array<GoalRecord>;
+  onDragEnd: OnDragEndResponder;
 }
-interface TableState {}
+interface TableState { }
 
 const cumulativeGoalSpendingFor = (goals: Array<GoalData>) => (
   cdf(goals.map((goal) => (goal.spendingPerMonth)))
@@ -18,7 +20,7 @@ const cumulativeGoalSpendingFor = (goals: Array<GoalData>) => (
 class GoalsTable extends React.Component<TableProps, TableState> {
 
   render() {
-    const { orderedGoals } = this.props;
+    const { orderedGoals, onDragEnd } = this.props;
     const cumulativeGoalSpending = cumulativeGoalSpendingFor(orderedGoals);
 
     return (
@@ -29,12 +31,12 @@ class GoalsTable extends React.Component<TableProps, TableState> {
           <span>Deadline</span>
           <span>Monthly Cost</span>
         </div>
-        <ol>
           <GoalAdder />
-          <GoalList
-            orderedGoals={orderedGoals}
-            cumulativeGoalSpending={cumulativeGoalSpending} />
-        </ol>
+          <DragDropContext onDragEnd={onDragEnd}>
+              <GoalList
+                orderedGoals={orderedGoals}
+                cumulativeGoalSpending={cumulativeGoalSpending} />
+          </DragDropContext>
         <div className="GoalsTable__footer">
           <span className="GoalsTable__total">
             {cumulativeGoalSpending[orderedGoals.length - 1] || 0}

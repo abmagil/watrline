@@ -20,7 +20,6 @@ export interface GoalBase {
  */
 export interface GoalData extends GoalBase {
   lockedAttr?: LockableAttrName;
-  startingYear: number;
 }
 
 /**

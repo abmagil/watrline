@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 import { GoalRecord } from '../../models/Goal';
+import { DropResult } from 'react-beautiful-dnd';
 
 export interface AddGoalAction {
   type: 'GOAL:ADD';
@@ -16,10 +17,19 @@ export interface MoveGoalDownAction {
   id: string;
 }
 
+export interface SetIndexAction {
+  type: 'GOAL:SET_INDEX';
+  payload: DropResult;
+}
+
 export const moveUp = (id: string): MoveGoalUpAction => ({ type: 'GOAL:MOVE_UP', id});
 export const moveDown = (id: string): MoveGoalDownAction => ({ type: 'GOAL:MOVE_DOWN', id});
+export const setIndex = (payload: DropResult): SetIndexAction => ({
+  type: 'GOAL:SET_INDEX',
+  payload
+})
 
-type OrderAction = AddGoalAction | MoveGoalUpAction | MoveGoalDownAction
+type OrderAction = AddGoalAction | MoveGoalUpAction | MoveGoalDownAction | SetIndexAction
 const reducer: Reducer<Array<string>, OrderAction> = (state = [], action): Array<string> => {
   switch (action.type) {
   case 'GOAL:ADD': {
@@ -27,6 +37,16 @@ const reducer: Reducer<Array<string>, OrderAction> = (state = [], action): Array
       action.goal.id,
       ...state,
     ];
+  }
+  case 'GOAL:SET_INDEX': {
+    const { source, destination, draggableId } = action.payload;
+    
+    if (!destination) { return state; }
+    
+    let newState = Array.from(state);
+    newState.splice(source.index, 1);
+    newState.splice(destination.index, 0, draggableId);
+    return newState;
   }
   case 'GOAL:MOVE_UP': {
     const goalIdx: number = state.indexOf(action.id);
