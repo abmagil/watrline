@@ -51,6 +51,7 @@
     order: 10;
 
     &.locked {
+      align-items: center;
       display: flex;
       justify-content: flex-end;
       order: 100;

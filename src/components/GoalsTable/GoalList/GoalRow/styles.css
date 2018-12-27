@@ -31,6 +31,7 @@
     text-align: left;
     order: 10; }
     .GoalRow .GoalAttribute.locked {
+      align-items: center;
       display: flex;
       justify-content: flex-end;
       order: 100;

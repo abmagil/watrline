@@ -31,8 +31,7 @@ class GoalAttribute extends React.PureComponent<GoalAttributeProps> {
           )
           : (
             <React.Fragment>
-              <label onClick={lockedHandler} >{title}
-
+              <label onClick={lockedHandler} >{title}</label>
                 <DebouncedComponent debouncePeriod={1000}>
                   <SigFigInput
                     className="editable"
@@ -42,7 +41,6 @@ class GoalAttribute extends React.PureComponent<GoalAttributeProps> {
                     sigFigs={2}
                   />
                 </DebouncedComponent>
-              </label>
             </React.Fragment>
           )
         }
