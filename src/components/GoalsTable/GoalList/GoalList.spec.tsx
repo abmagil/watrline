@@ -26,7 +26,7 @@ describe('GoalList', () => {
         {id: '4', goalTotal: 12, deadlineYear: new Date().getFullYear(), spendingPerMonth: 1},
       ],
     });
-    console.log(wrapper.debug(false));
+    console.log(wrapper.debug());
     expect(wrapper.find("ol").children().length).toBe(4);
   });
 });

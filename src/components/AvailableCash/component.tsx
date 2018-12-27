@@ -1,5 +1,6 @@
 import * as React from 'react';
 import classNames from 'classnames';
+import './styles.css';
 
 type ReactEventHandler = React.ReactEventHandler;
 
@@ -11,7 +12,7 @@ interface AvailableCashProps {
 
 
 const AvailableCash: React.SFC<AvailableCashProps> = ({ availableCash, spendingSummary, updateHandler }) => (
-  <label className={classNames([spendingSummary, 'availableCash'])}>
+  <label className={classNames([spendingSummary, 'AvailableCash'])}>
      Monthly Available Cash
      <input
        type="number"

@@ -5,6 +5,7 @@ import './styles.css';
 // import NumericInput from '../../../../NumericInput';
 import {ReactComponent as Lock} from '../../../../../lock.svg';
 import classNames from 'classnames';
+import SigFigInput from '../../../../SigFigInput';
 
 interface GoalAttributeProps {
   isLocked: boolean;
@@ -28,12 +29,12 @@ class GoalAttribute extends React.PureComponent<GoalAttributeProps> {
               {title}
               <Lock className="lock" onClick={lockedHandler} />
               <DebouncedComponent debouncePeriod={1000}>
-                <input
-                  type="number"
+                <SigFigInput
                   className="editable"
                   value={value}
                   onChange={updateHandler}
                   onDoubleClick={lockedHandler}
+                  sigFigs={2}
                 />
               </DebouncedComponent>
             </React.Fragment>

@@ -1,8 +1,9 @@
 .GoalRow {
   background-color: white;
   border-style: solid none none;
-  border-width: 3px;
-  box-shadow: 5px 3px 5px 0px rgba(200, 200, 200, 0.32);
+  border-radius: 5px 5px 0 0;
+  border-width: 5px;
+  box-shadow: 5px 3px 5px 1px rgba(171, 171, 171, 0.8);
   box-sizing: border-box;
   margin-bottom: 15px;
   padding: 5px 15px;
@@ -24,14 +25,22 @@
     font-size: 1.6em;
     font-weight: 700;
     order: 0; }
+  .GoalRow .divider {
+    order: 11; }
   .GoalRow .GoalAttribute {
     text-align: left;
     order: 10; }
     .GoalRow .GoalAttribute.locked {
-      order: 1; }
+      order: 100;
+      font-weight: lighter;
+      font-style: italic;
+      color: #404040; }
+      .GoalRow .GoalAttribute.locked p {
+        align-self: flex-end;
+        font-size: 14px; }
   .GoalRow li {
     list-style-type: none; }
-    .GoalRow li p {
-      align-self: flex-end; }
-    .GoalRow li span {
-      display: inline; }
+  .GoalRow hr {
+    width: 100%; }
+  .GoalRow span {
+    display: inline; }
