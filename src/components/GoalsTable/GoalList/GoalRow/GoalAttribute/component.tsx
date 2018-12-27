@@ -3,7 +3,7 @@ import * as React from 'react';
 import DebouncedComponent from '../../../../DebouncedComponent';
 import './styles.css';
 // import NumericInput from '../../../../NumericInput';
-import {ReactComponent as Lock} from '../../../../../lock.svg';
+import { ReactComponent as Lock } from '../../../../../lock.svg';
 import classNames from 'classnames';
 import SigFigInput from '../../../../SigFigInput';
 
@@ -21,22 +21,28 @@ class GoalAttribute extends React.PureComponent<GoalAttributeProps> {
   render() {
     const { isLocked, value, lockedHandler, updateHandler, title } = this.props;
     return (
-      <span className={classNames([{"locked": isLocked}, "GoalAttribute"])}>
+      <span className={classNames([{ "locked": isLocked }, "GoalAttribute"])}>
         {isLocked
-          ? <p>{title}: {value}</p>
+          ? (
+            <React.Fragment>
+              <Lock className="lock" />
+              <p>{title}: {value}</p>
+            </React.Fragment>
+          )
           : (
             <React.Fragment>
-              {title}
-              <Lock className="lock" onClick={lockedHandler} />
-              <DebouncedComponent debouncePeriod={1000}>
-                <SigFigInput
-                  className="editable"
-                  value={value}
-                  onChange={updateHandler}
-                  onDoubleClick={lockedHandler}
-                  sigFigs={2}
-                />
-              </DebouncedComponent>
+              <label onClick={lockedHandler} >{title}
+
+                <DebouncedComponent debouncePeriod={1000}>
+                  <SigFigInput
+                    className="editable"
+                    value={value}
+                    onChange={updateHandler}
+                    onDoubleClick={lockedHandler}
+                    sigFigs={2}
+                  />
+                </DebouncedComponent>
+              </label>
             </React.Fragment>
           )
         }

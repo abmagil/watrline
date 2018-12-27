@@ -51,6 +51,8 @@
     order: 10;
 
     &.locked {
+      display: flex;
+      justify-content: flex-end;
       order: 100;
       font-weight: lighter;
       font-style: italic;
@@ -59,25 +61,15 @@
       p {
         align-self: flex-end;
         font-size: 14px;
+        margin-left: 0.25em;
       }
     }
   }
 
-
-  
-  li {
-    list-style-type: none;
-  }
-    
   hr {
     width: 100%;
   }
   
-
-  span {
-    display: inline;
-  }
-
 }
 
 

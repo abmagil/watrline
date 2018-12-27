@@ -31,16 +31,15 @@
     text-align: left;
     order: 10; }
     .GoalRow .GoalAttribute.locked {
+      display: flex;
+      justify-content: flex-end;
       order: 100;
       font-weight: lighter;
       font-style: italic;
       color: #404040; }
       .GoalRow .GoalAttribute.locked p {
         align-self: flex-end;
-        font-size: 14px; }
-  .GoalRow li {
-    list-style-type: none; }
+        font-size: 14px;
+        margin-left: 0.25em; }
   .GoalRow hr {
     width: 100%; }
-  .GoalRow span {
-    display: inline; }
