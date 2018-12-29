@@ -7,6 +7,7 @@ import { calculateData } from './ExpensesDriver/calculateData';
 import { flatToNested } from '../../utils/categoryMapper';
 import throttle from 'lodash/throttle';
 import ExpensesForm from "./ExpensesForm";
+import AvailableCash from '../AvailableCash';
 
 const mapStateToProps = (state: StoreShape) => ({
   expenseData: calculateData(flatToNested(state.expenses)),
@@ -49,6 +50,7 @@ class Expenses extends React.Component<ExpensesProps, ExpensesState> {
     const { width, height } = this.state;
     return (
       <>
+        <AvailableCash />
         <ExpensesForm />
         <ExpensesDriver width={width} height={height} nodes={nodes} links={links} >
           {({ nodes, links, width, height }) => <ExpensesGraph nodes={nodes} links={links} width={width} height={height} />}
