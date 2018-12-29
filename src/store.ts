@@ -11,25 +11,26 @@ import defaultCategories, { Categories } from './default-categories';
 import availableCash from './components/AvailableCash/reducer';
 import goals from './components/GoalsTable/reducer';
 import order from './components/Order/reducer';
-import spending from './components/Spending/reducer';
+import expenses from './components/Expenses/reducer';
 import { GoalRecord } from './models/Goal';
 
 const reducer = combineReducers({
   availableCash,
   goals,
   order,
-  spending,
+  expenses,
 });
 
 export interface StoreShape {
   availableCash: number;
+  expenses: Categories;
   goals: ObjectOf<GoalRecord>;
   order: Array<string>;
-  spending: Categories;
+  
 }
 
 const initialState: StoreShape = {
-  spending: defaultCategories(),
+  expenses: defaultCategories(),
   goals: {
     '1': {
       deadlineYear: new Date().getFullYear() + 10,

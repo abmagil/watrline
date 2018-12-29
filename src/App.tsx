@@ -1,14 +1,12 @@
 import * as React from 'react';
 import './App.css';
-import AvailableCash from './components/AvailableCash';
-import GoalsTable from './components/GoalsTable';
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import GoalsView from './components/GoalsView';
+import Expenses from './components/Expenses';
 
-const Summary = () => (
-  <div>Hello World</div>
-);
-{/* <AvailableCash />
-<GoalsTable /> */}
+const Incomes = () => {
+  return (<div>Enter your income</div>);
+};
 
 class App extends React.Component {
   public render() {
@@ -24,13 +22,19 @@ class App extends React.Component {
             </li>
             <li>
               <div>
-                <NavLink to="/summary/">Summary</NavLink>
+                <NavLink to="/income/">Incomes</NavLink>
+              </div>
+            </li>
+            <li>
+              <div>
+                <NavLink to="/summary/">Expenses</NavLink>
               </div>
             </li>
           </ul>
         </nav>
-          <Route path="/goals/" component={GoalsTable} />
-          <Route path="/summary/" component={Summary} />
+        <Route path="/income/" component={Incomes}/>
+        <Route path="/goals/" component={GoalsView} />
+        <Route path="/summary/" component={Expenses} />
         </div>
       </Router>
     );

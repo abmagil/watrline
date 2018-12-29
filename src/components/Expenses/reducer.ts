@@ -1,6 +1,5 @@
 import { Reducer } from 'redux';
 
-
 export interface UpdateSpendingAction {
   type: 'CATEGORY:UPDATE_SPENDING';
   name: string;
