@@ -50,7 +50,6 @@ class Expenses extends React.Component<ExpensesProps, ExpensesState> {
     const { width, height } = this.state;
     return (
       <>
-        <AvailableCash />
         <ExpensesForm />
         <ExpensesDriver width={width} height={height} nodes={nodes} links={links} >
           {({ nodes, links, width, height }) => <ExpensesGraph nodes={nodes} links={links} width={width} height={height} />}
