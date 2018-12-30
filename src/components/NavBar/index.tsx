@@ -1,22 +1,18 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
+import './styles.css';
 
-export const NavBar = () => (<nav>
-  <ul>
-    <li>
-      <div>
+export const NavBar = () => (
+  <nav className="NavBar">
+    <ul>
+      <li>
         <NavLink to="/goals/">Goals</NavLink>
-      </div>
-    </li>
-    <li>
-      <div>
+      </li>
+      <li>
         <NavLink to="/income/">Incomes</NavLink>
-      </div>
-    </li>
-    <li>
-      <div>
+      </li>
+      <li>
         <NavLink to="/summary/">Expenses</NavLink>
-      </div>
-    </li>
-  </ul>
-</nav>);
+      </li>
+    </ul>
+  </nav>);

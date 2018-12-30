@@ -1,0 +1,42 @@
+.NavBar {
+  ul {
+    background-color: hsl(0, 0, 75);
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    margin: 0 0 15px;
+    padding: 15px 0;
+  
+    li {
+      border-color: hsl(0, 0, 95);
+      border-style: solid;
+      border-width: 0 1px 0 1px;
+      display: inline-block;
+      flex: 1 auto;
+      text-align: center;
+
+      &:last-of-type {
+        border-right: none;
+      }
+
+      &:first-of-type {
+        border-left: none;
+      }
+  
+      a {
+        color: #333;
+        display: block;
+        font-size: 20px;
+        text-decoration: none;
+        width: 100%;
+
+
+        &.active {
+          color: #111;
+          text-decoration: underline;
+          text-decoration-color: #111;
+        }
+      }
+    }
+  }
+}
