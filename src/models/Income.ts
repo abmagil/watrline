@@ -1,5 +1,5 @@
-export type IncomeCadence = 'once'|'bimonthly'|'monthly'|'yearly';
-export const IncomeCadenceOptions = ['once','bimonthly','monthly','yearly'];
+export type IncomeCadence = 'once'|'biweekly'|'monthly'|'yearly';
+export const IncomeCadenceOptions = ['once','biweekly','monthly','yearly'];
 
 export interface IncomeData {
   name: string;

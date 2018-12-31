@@ -19,7 +19,7 @@ const mapStateToProps = (state: StoreShape, ownProps: OwnProps) => {
   const { goal, spendingToThisGoal } = ownProps;
   return {
     goal,
-    spendingSummary: spendingSummary(spendingToThisGoal / availableCashFrom(state)) as SpendingSummary,
+    spendingSummary: spendingSummary(spendingToThisGoal / availableCashFrom(state)),
   };
 };
 

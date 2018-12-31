@@ -72,7 +72,7 @@ const initialState: StoreShape = {
     '123': {
       name: "salary",
       cadence: "monthly",
-      amount: 14444,
+      amount: 1000,
       id: '123'
     }
   },

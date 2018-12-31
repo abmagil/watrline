@@ -1,6 +1,8 @@
 export type SpendingSummary = "veryLow" | "onTrack" | "tight" | "over"
-const spendingSummary = (pcntSpent: number) => {
-  if (pcntSpent < 0.6) {
+const spendingSummary = (pcntSpent: number): SpendingSummary => {
+  if (pcntSpent < 0) { // indicates that there is negative available cash
+    return 'over';
+  } else if (pcntSpent < 0.6) {
     return 'veryLow';
   } else if (pcntSpent < 0.95) {
     return 'onTrack';
