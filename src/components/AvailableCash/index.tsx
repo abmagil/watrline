@@ -13,7 +13,7 @@ const mapStateToProps = (state: StoreShape) => ({
   availableCash: availableCashFrom(state),
   spendingSummary: spendingSummaryFn(totalGoalSpendingFrom(state) / availableCashFrom(state)),
   expensesTotal: sum(values(state.expenses)),
-  incomeTotal: 4000,
+  incomeTotal: sum(values(state.incomes).map(x => x.amount)),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => {
@@ -25,4 +25,3 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AvailableCash);
-

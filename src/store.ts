@@ -68,7 +68,14 @@ const initialState: StoreShape = {
     '1',
   ],
   availableCash: 400,
-  incomes: {},
+  incomes: {
+    '123': {
+      name: "salary",
+      cadence: "monthly",
+      amount: 14444,
+      id: '123'
+    }
+  },
 };
 
 const store = createStore(
