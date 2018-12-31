@@ -4,19 +4,21 @@
   combineReducers,
 } from 'redux';
 
-import { getYear } from 'date-fns';
-
 import defaultCategories, { Categories } from './default-categories';
 
 import availableCash from './components/AvailableCash/reducer';
 import goals from './components/GoalsTable/reducer';
 import order from './components/Order/reducer';
 import expenses from './components/Expenses/reducer';
+import incomes from './components/Incomes/reducer';
+
 import { GoalRecord } from './models/Goal';
+import { IncomeRecord } from './models/Income';
 
 const reducer = combineReducers({
   availableCash,
   goals,
+  incomes,
   order,
   expenses,
 });
@@ -24,9 +26,9 @@ const reducer = combineReducers({
 export interface StoreShape {
   availableCash: number;
   expenses: Categories;
+  incomes: ObjectOf<IncomeRecord>;
   goals: ObjectOf<GoalRecord>;
-  order: Array<string>;
-  
+  order: Array<string>;  
 }
 
 const initialState: StoreShape = {
@@ -66,6 +68,7 @@ const initialState: StoreShape = {
     '1',
   ],
   availableCash: 400,
+  incomes: {},
 };
 
 const store = createStore(

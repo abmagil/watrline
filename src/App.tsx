@@ -4,10 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import GoalsView from './components/GoalsView';
 import Expenses from './components/Expenses';
 import Header from './components/Header';
-
-const Incomes = () => {
-  return (<div>Enter your income</div>);
-};
+import IncomeView from './components/Incomes';
 
 class App extends React.Component {
   public render() {
@@ -15,7 +12,7 @@ class App extends React.Component {
       <Router>
         <div className="App">
         <Header />
-        <Route path="/income/" component={Incomes}/>
+        <Route path="/income/" component={IncomeView}/>
         <Route path="/goals/" component={GoalsView} />
         <Route path="/summary/" component={Expenses} />
         </div>
