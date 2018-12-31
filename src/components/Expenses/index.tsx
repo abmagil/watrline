@@ -7,11 +7,21 @@ import { calculateData } from './ExpensesDriver/calculateData';
 import { flatToNested } from '../../utils/categoryMapper';
 import throttle from 'lodash/throttle';
 import ExpensesForm from "./ExpensesForm";
-import AvailableCash from '../AvailableCash';
+import mapValues from 'lodash/mapValues';
+import mapKeys from 'lodash/mapKeys';
 
-const mapStateToProps = (state: StoreShape) => ({
-  expenseData: calculateData(flatToNested(state.expenses)),
-});
+const mapStateToProps = (state: StoreShape) => {
+  const goalsData = state.goals;
+  const goalsWithNameInKey = mapKeys(goalsData, (goal) => (`goals.${goal.type}`));
+  const finalGoalData = mapValues(goalsWithNameInKey, (goal) => goal.spendingPerMonth);
+  
+  return {
+    expenseData: calculateData(flatToNested({
+      ...state.expenses,
+      ...finalGoalData,
+    })),
+  }
+};
 
 interface ExpensesProps {
   expenseData: ReturnType<typeof calculateData>
@@ -22,8 +32,8 @@ interface ExpensesState {
   height: number;
 }
 
-class Expenses extends React.Component<ExpensesProps, ExpensesState> {
-  constructor(props: ExpensesProps){
+class ExpensesView extends React.Component<ExpensesProps, ExpensesState> {
+  constructor(props: ExpensesProps) {
     super(props);
 
     this.state = {
@@ -33,7 +43,7 @@ class Expenses extends React.Component<ExpensesProps, ExpensesState> {
 
     this.updateDimensions = throttle(this.updateDimensions.bind(this), 500);
   }
-  
+
   updateDimensions() {
     this.setState({
       height: Math.min(window.innerHeight, 400),
@@ -59,4 +69,4 @@ class Expenses extends React.Component<ExpensesProps, ExpensesState> {
   }
 }
 
-export default connect(mapStateToProps, {})(Expenses);
+export default connect(mapStateToProps, {})(ExpensesView);

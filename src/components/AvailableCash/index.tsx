@@ -13,7 +13,9 @@ const totalIncomeFrom = (state: StoreShape) => {
   return sum(values(state.incomes).map(monthlyEquivalentIncome));
 }
 const totalExpensesFrom = (state: StoreShape) => {
-  return sum(values(state.expenses));
+  return sum(values(state.expenses))
+    + sum(values(state.goals).map(goal => goal.spendingPerMonth));
+    
 }
 export const availableCashFrom = (state: StoreShape) => (totalIncomeFrom(state) - totalExpensesFrom(state));
 
